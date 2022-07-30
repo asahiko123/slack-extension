@@ -1,4 +1,5 @@
-
+import Vue from "vue";
+import App from "./App.vue";
 chrome.extension.onMessage.addListener(() => {
 
     const userMessages = [
@@ -7,6 +8,9 @@ chrome.extension.onMessage.addListener(() => {
             "text": "おはようございます" +"\n"+ "本日出社です。" +"\n"+ "■本日の業務" +"\n"+ "・" +"\n"+ "・"
         }
     ]
+
+    const target = document.activeElement;
+    console.log(target);
     const url = 'https://hooks.slack.com/services/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';
     const username = '勤怠報告'
     const icon = ':ghost:'
@@ -17,15 +21,15 @@ chrome.extension.onMessage.addListener(() => {
     }
     const payload = JSON.stringify(jsonData)
 
-    // const options = {
-    //     'method' : 'post',
-    //     'contentType' : 'application/json',
-    //     'payload' : payload
-    // }
+    const options = {
+        'method' : 'post',
+        'contentType' : 'application/json',
+        'payload' : payload
+    }
 
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: `payload=${payload}`
-    });
+    new Vue({
+        render: h => h(App)
+    }).$mount(target.children[0])
+
+    
 })
