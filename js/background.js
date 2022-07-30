@@ -27,6 +27,12 @@ chrome.runtime.onInstalled.addListener(function(details){
         title: "業務の終了",
         contexts: ["all"]
     })
+    chrome.contextMenus.create({
+        parentId: parent,
+        id: "custom",
+        title: "カスタム",
+        contexts: ["all"]
+    })
 })
 /*メニュー選択後の処理 */
 
@@ -52,6 +58,11 @@ chrome.contextMenus.onClicked.addListener((info,tab) =>{
                 function: clockOut,
             })
             break;
+        case "custom":
+            chrome.scripting.executeScript({
+                target: {tabId: tab.id},
+                function: custom,
+            })
     }
 });
 
@@ -85,6 +96,25 @@ function clockOut(){
     
     element[0].innerHTML= "本日の業務を終了します。" +"\n"+ "■本日の業務" +"\n"+ "・" +"\n"+ "・" + "\n" + "お疲れ様でした。"
 
+}
+
+function custom(){
+
+    const element = document.querySelectorAll("div.ql-editor")
+
+    chrome.storage.sync.get(['selected_message'],(val) =>{
+        console.log(val.selected_message)
+
+        if(!val.selected_message){
+            element[0].innerHTML = 'カスタムテンプレートの登録がまだのようです。'
+            return;
+        }
+
+
+        console.log('here')
+
+        element[0].innerHTML = val.selected_message
+    })
 }
 
 

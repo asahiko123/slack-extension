@@ -1,5 +1,22 @@
 <!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/style.css">
+        <title>カスタムテンプレート</title>
+    </head>
     <body>
-        <h1>Hello,World</h1>
+        <div class="container">
+            <h3>カスタムテンプレート</h3>
+            <div class="input_field">
+                <label for="message">カスタム</label>
+                    <textarea id="message"></textarea>
+                <button id="submit">保存</button>
+                <p>1)自作のテンプレートを保存しておくことで、次回以降「カスタム」から呼び出すことができます。</p>
+                <p>2)保存できるテンプレートは1種類のみです。保存すると前回のカスタムは上書きされます。</p>
+                <p>3)Chrome拡張なので...slackもChromeから閲覧しないと使えません(爆)</p>
+            </div>
+        </div>
+        
+        <script src="./js/popup.js"></script>
     </body>
 </html>

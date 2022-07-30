@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name" : "slack-extension",
+    "name" : "Slack-personal-template",
     "version" : "1.0",
-    "description":"個人日報用テンプレート",
+    "description":"Slack専用個人日報用テンプレートです。他のサービスでは機能しません。",
     "icons":{
         "16":"./icons/16.png",
         "48":"./icons/48.png",
@@ -18,6 +18,11 @@
     ],
     "background":{
         "service_worker":"js/background.js"
+    },
+    "action": {
+        
+        "default_title": "Ext title",
+        "default_popup": "popup.html"
     }
 
    
